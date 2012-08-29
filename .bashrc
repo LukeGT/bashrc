@@ -21,12 +21,7 @@ gitPrompt() {
     '
 }
 
-export PS1 PS2
 umask 027
-export MAIL VIEWER PS1 PS2 CHECKMAIL # just in case
 export PS1='\n\e[32m\u@\h \e[33m\w\e[0m$(gitPrompt)\n\$ '
 alias ls="ls --color"
-alias grepc='grep --color=always'
-alias npm='http_proxy= https_proxy= npm'
 eval `dircolors`
-PATH="$PATH:~csesoc/bin/"
