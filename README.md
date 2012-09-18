@@ -2,5 +2,5 @@
 
 ## Features
   - A readable, colourful prompt, which adds new lines between commands to improve readability
-  - A small Perl script which prints git information into your prompt
+  - Small Perl scripts which print git and svn information into your prompt
   - Colourisation of ls
