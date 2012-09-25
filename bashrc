@@ -4,13 +4,13 @@ gitPrompt() {
     if ($_) {
       ($branch) = /\* ([^\s]+)/s;
       ($p, $r, $c, $g, $b) = ("\e[35m", "\e[31m", "\e[36m", "\e[32m", "\e[0m");
-      $status = `git status --color=never -s 2>&1`;
+      $status = `git status --porcelain -s 2>&1`;
       if ($status =~ /^fatal/) {
         print "$r [ $branch ]$b";
       } else {
-        %h = (" M", 0, " D", 0, "??", 0);
-        $h{$&}++ while $status =~ /^../gms;
-        ($mod, $del, $new) = ($h{" M"} + $h{"M "}, $h{" D"} + $h{"D "}, $h{"??"} + $h{"A "});
+        %h = ("M", 0, "D", 0, "?", 0);
+        $h{$1}++ while $status =~ /([MADRC?]) /gms;
+        ($mod, $del, $new) = ($h{"M"} + $h{"R"}, $h{"D"}, $h{"?"} + $h{"A"} + $h{"C"});
         ($in, $de) = `git diff --color=never --shortstat` =~ /\d+\D*(\d+)\D*(\d+)/;
         $diff = $in ? "$in+ $de- " : "";
         print "$p [ $branch $diff$c${mod}m $r${del}d $g${new}n $p]$b";
