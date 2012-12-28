@@ -38,4 +38,6 @@ svnPrompt() {
 umask 027
 export PS1='\n\e[32m\u@\h \e[33m\w\e[0m$(gitPrompt)$(svnPrompt)\n\$ '
 alias ls="ls --color"
+alias copy="xclip -selection clipboard -i"
+alias pste="xclip -selection clipboard -o"
 eval `dircolors`
