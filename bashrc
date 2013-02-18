@@ -35,6 +35,16 @@ svnPrompt() {
   '
 }
 
+dots='..'
+slashes='..'
+
+for (( i = 0; i <= 20; ++i ))
+do
+  alias "$dots"="cd $slashes"
+  dots="$dots."
+  slashes="$slashes/.."
+done
+
 export PS1='\n\e[32m\u@\h \e[33m\w\e[0m$(gitPrompt)$(svnPrompt)\n\$ '
 alias ls="ls --color"
 alias copy="xclip -selection clipboard -i"
