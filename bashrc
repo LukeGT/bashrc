@@ -13,6 +13,10 @@ gitPrompt() {
         ($mod, $del, $new) = ($h{"M"} + $h{"R"}, $h{"D"}, $h{"?"} + $h{"A"} + $h{"C"});
         ($in, $de) = `git diff --color=never --shortstat` =~ /\d+\D*(\d+)\D*(\d+)/;
         $diff = $in ? "$in+ $de- " : "";
+        $folder = `pwd`;
+        $folder =~ s|^.*/||;
+        chomp $folder;
+        print "\e]2;$folder : $branch\a";
         print "$p [ $branch $diff$c${mod}m $r${del}d $g${new}n $p]$b";
       }
     }
