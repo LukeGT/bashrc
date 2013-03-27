@@ -2,7 +2,7 @@ gitPrompt() {
   perl -e '
     $_ = `git branch --color=never 2> /dev/null`;
     if ($_) {
-      ($branch) = /\* ([^\s]+)/s;
+      ($branch) = /\* ([^\n]+)/s;
       ($p, $r, $c, $g, $b) = ("\e[35m", "\e[31m", "\e[36m", "\e[32m", "\e[0m");
       $status = `git status --porcelain -s 2>&1`;
       if ($status =~ /^fatal/) {
