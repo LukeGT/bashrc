@@ -11,8 +11,10 @@ gitPrompt() {
         %h = ("M", 0, "D", 0, "?", 0);
         $h{$1}++ while $status =~ /([MADRC?]) /gms;
         ($mod, $del, $new) = ($h{"M"} + $h{"R"}, $h{"D"}, $h{"?"} + $h{"A"} + $h{"C"});
-        ($in, $de) = `git diff --color=never --shortstat` =~ /\d+\D*(\d+)\D*(\d+)/;
-        $diff = $in ? "$in+ $de- " : "";
+        $shortstat = `git diff --color=never --shortstat`;
+        ($in) = $shortstat =~ /(\d+)\D*\+/;
+        ($de) = $shortstat =~ /(\d+)\D*-/;
+        $diff = ($in ? "$in+ " : "") . ($de ? "$de- " : "");
         $folder = `pwd`;
         $folder =~ s|^.*/||;
         chomp $folder;
