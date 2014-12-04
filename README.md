@@ -6,3 +6,4 @@
   - Colourisation of ls
   - Useful 'copy' and 'pste' commands act as shortcuts to the X clipboard
   - Convenient aliases for moving up directories (e.g. '...' moves up two directories)
+  - A different prompt colour when you're over SSH

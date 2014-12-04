@@ -1,3 +1,7 @@
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  SSH_SESSION=1
+fi
+
 gitPrompt() {
   perl -e '
     $_ = `git branch --color=never 2> /dev/null`;
@@ -44,14 +48,21 @@ svnPrompt() {
 dots='..'
 slashes='..'
 
-for (( i = 0; i <= 20; ++i ))
+for i in `seq 20`
 do
   alias "$dots"="cd $slashes"
   dots="$dots."
   slashes="$slashes/.."
 done
 
-export PS1='\n\e[32m\u@\h \e[33m\w\e[0m$(gitPrompt)$(svnPrompt)\n\$ '
+if [ -n "$SSH_SESSION" ]; then
+  PROMPT_COLOR=36
+else
+  PROMPT_COLOR=32
+fi
+
+export PS1='\n\e[${PROMPT_COLOR}m\u@\h \e[33m\w\e[0m$(gitPrompt)$(svnPrompt)\n\$ '
+
 alias ls="ls --color"
 alias copy="xclip -selection clipboard -i"
 alias pste="xclip -selection clipboard -o"
