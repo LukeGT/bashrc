@@ -63,7 +63,7 @@ fi
 
 export PS1='\n\e[${PROMPT_COLOR}m\u@\h \e[33m\w\e[0m$(gitPrompt)$(svnPrompt)\n\$ '
 
-alias ls="ls --color"
+alias ls="ls --color=auto"
 alias copy="xclip -selection clipboard -i"
 alias pste="xclip -selection clipboard -o"
 eval `dircolors`
