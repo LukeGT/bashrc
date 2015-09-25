@@ -67,3 +67,6 @@ alias ls="ls --color=auto"
 alias copy="xclip -selection clipboard -i"
 alias pste="xclip -selection clipboard -o"
 eval `dircolors`
+
+# Add any symlink'd directories in ~/bin to the PATH
+export PATH="$PATH:$(find ~/bin -type l -xtype d | xargs -r realpath | tr '\n' ':' | sed s/.$//)"
