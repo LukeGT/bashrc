@@ -73,4 +73,4 @@ eval `dircolors`
 export PATH="$PATH:$(find ~/bin -type l -xtype d | xargs -r realpath | tr '\n' ':' | sed s/.$//)"
 
 # Perforce stuff
-export P4DIFF=colordiff
+export P4DIFF="/usr/bin/dwdiff -P -c -C3"
