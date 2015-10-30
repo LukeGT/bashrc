@@ -74,3 +74,9 @@ export PATH="$PATH:$(find ~/bin -type l -xtype d | xargs -r realpath | tr '\n' '
 
 # Perforce stuff
 export P4DIFF="/usr/bin/dwdiff -P -c -C3"
+alias g4h='cd /google/src/head/depot/google3'
+alias g4w='cd `find-work.py`'
+
+g4g () {
+  cd `folder-finder.py $@`
+}
