@@ -71,3 +71,7 @@ eval `dircolors`
 
 # Add any symlink'd directories in ~/bin to the PATH
 export PATH="$PATH:$(find ~/bin -type l -xtype d | xargs -r realpath | tr '\n' ':' | sed s/.$//)"
+
+# nvm
+export NVM_DIR="/home/lukegt/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
