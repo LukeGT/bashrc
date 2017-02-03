@@ -61,19 +61,26 @@ else
   PROMPT_COLOR=32
 fi
 
-export PS1='\n\e[${PROMPT_COLOR}m\u@\h \e[33m\w\e[0m$(gitPrompt)$(svnPrompt)\n\$ '
+export PS1='\n\e[${PROMPT_COLOR}m\u@\h \e[33m\w\e[0m\n\$ '
 export EDITOR='vim'
+
+# Fancy less
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
 
 alias ls="ls --color=auto"
 alias copy="xclip -selection clipboard -i"
 alias pste="xclip -selection clipboard -o"
 eval `dircolors`
 
+# Go stuff
+export GOPATH=$HOME/gopath
+
 # Add any symlink'd directories in ~/bin to the PATH
 export PATH="$PATH:$(find ~/bin -type l -xtype d | xargs -r realpath | tr '\n' ':' | sed s/.$//)"
 
 # Perforce stuff
-export P4DIFF="/usr/bin/dwdiff -P -c -C3"
+export P4DIFF=/usr/local/google/home/lukegt/bin/fdiff
 alias g4h='cd /google/src/head/depot/google3'
 alias g4w='cd `find-work.py`'
 
